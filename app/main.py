@@ -1,5 +1,5 @@
 import json
-from flask import Flask
+from flask import Flask, render_template
 import queries as query
 
 app = Flask(__name__)
@@ -15,7 +15,8 @@ app.config.update(dict(
 
 @app.route("/")
 def index():
-    return app.send_static_file("index.html")
+    # return app.send_static_file("index.html")
+    return render_template('index.html')
 
 
 @app.route("/users")
