@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+<section class="bg-light" id="search" style="margin-top:60px">
+  <div class="container">
+    <h2>Search Keyword Trend</h2>
+    <p>The popular keyword list:</p>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Zipcode</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody id="trendTable">
+        <!-- <tr>
+          <td>94704</td>
+          <td>233</td>
+        </tr>
+        <tr>
+          <td>947124</td>
+          <td>123</td>
+        </tr>
+        <tr>
+          <td>92122</td>
+          <td>22</td>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="../static/js/trend.js"></script>
+{% endblock %}

@@ -34,6 +34,10 @@ def about():
 def contact():
     return render_template('contact.html')
 
+@app.route('/trend',methods=['GET'])
+def trend():
+    return render_template('trend.html')
+
 @app.route("/users")
 def users():
     return json.dumps({'success': 'success', 'results': query.get_data()})
