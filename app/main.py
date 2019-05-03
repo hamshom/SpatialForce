@@ -18,9 +18,13 @@ def index():
     # return app.send_static_file("index.html")
     return render_template('index.html')
 
-@app.route('/update',methods=['GET'])
+@app.route('/rank',methods=['GET'])
 def update_form():
-    return render_template('update.html')
+    return render_template('rank.html')
+
+# @app.route('/update',methods=['GET'])
+# def update_form():
+#     return render_template('update.html')
 
 @app.route('/search',methods=['GET'])
 def search():
