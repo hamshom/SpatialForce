@@ -1,6 +1,5 @@
 import database as db
 
-
 def get_users():
     query = "SELECT * FROM spatialforce.Geo"
     conn = db.connect()
@@ -66,4 +65,10 @@ def get_top_10_zip_most_expensive_house():
     result = cursor.fetchall()
     return result
 
-
+def zipcode_log():
+    query = "SELECT Zipcode, COUNT(*) AS Log FROM spatialforce.zipcodeLog GROUP BY Zipcode ORDER BY Log Desc"
+    conn = db.connect()
+    cursor = conn.cursor(buffered=True)
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return results

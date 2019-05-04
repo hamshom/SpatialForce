@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+
+{% block content %}
+<section class="bg-light" id="search" style="margin-top:60px">
+  <div class="container">
+    <h2>Rank by different categories</h2>
+    <div class="container">
+      <div class="row">
+        <div class="col-2 col-sm">
+          <p>Categories:</p>
+          <div class="row">
+            <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-race">Race</button>
+          </div>
+          <div class="row">
+            <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-edu">Education</button>
+          </div>
+          <div class="row">
+            <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-income">Income</button>
+          </div>
+          <div class="row">
+            <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-house">House Value</button>
+          </div>
+        </div>
+        <div class="col-1 col-sm"></div>
+        <div class="col-4 col-sm">
+          <div id="list_top"></div>
+        </div>
+        <div class="col-1 col-sm"></div>
+        <div class="col-4 col-sm">
+          <div id="list_bottom"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="../static/js/rank.js"></script>
+{% endblock %}

@@ -4,44 +4,56 @@
 {% block content %}
 <section class="bg-light" id="search" style="margin-top:60px">
   <div class="container">
-    <h2>Filterable Table</h2>
-    <p>Type something in the input field to search the table for first names, last names or emails:</p>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
-    <br>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody id="myTable">
-        <tr>
-          <td>John</td>
-          <td>Doe</td>
-          <td>john@example.com</td>
-        </tr>
-        <tr>
-          <td>Mary</td>
-          <td>Moe</td>
-          <td>mary@mail.com</td>
-        </tr>
-        <tr>
-          <td>July</td>
-          <td>Dooley</td>
-          <td>july@greatstuff.com</td>
-        </tr>
-        <tr>
-          <td>Anja</td>
-          <td>Ravendale</td>
-          <td>a_r@test.com</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col-10">
+        <h2>Search</h2>
+        <p>Type a zipcode and search:</p>
+        <input class="form-control" id="myInput" type="text" placeholder="Search..">
+      </div>
+    </div>
+    <div class="row">
+      <p>
+      </p>
+    </div>
 
-    <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
+    <div class="row">
+      <div class="col-5">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">House Value</h5>
+            <p class="card-text">change to the value later.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Income</h5>
+            <p class="card-text">change to the value later.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-5">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Race</h5>
+            <p class="card-text">change to the value later.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Education</h5>
+            <p class="card-text">change to the value later.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+
 </section>
 
 {% endblock %}
