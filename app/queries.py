@@ -41,3 +41,29 @@ def get_top_population():
     cursor.execute(sql)
     result = cursor.fetchall()
     return result
+
+def get_top_10_zip_by_mean_housing_val():
+    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.housing_value_2017 on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id order by housing_value_2017.mean_housing_value desc limit 10"
+    conn = db.connect()
+    cursor = conn.cursor(buffered = True)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
+
+def get_bottom_10_zip_by_mean_housing_val():
+    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.housing_value_2017 on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id order by housing_value_2017.mean_housing_value limit 10"
+    conn = db.connect()
+    cursor = conn.cursor(buffered = True)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
+
+def get_top_10_zip_most_expensive_house():
+    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.housing_value_2017 on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id order by housing_value_2017.num_most_exp_house desc limit 10"
+    conn = db.connect()
+    cursor = conn.cursor(buffered = True)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
+
+
