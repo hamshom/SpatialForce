@@ -2,58 +2,91 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-<section class="bg-light" id="search" style="margin-top:60px">
+<section class="" id="search" style="margin-top:60px">
   <div class="container">
     <div class="row">
+      <div class="col-1"></div>
       <div class="col-10">
         <h2>Search</h2>
-        <p>Type a zipcode and search:</p>
-        <input class="form-control" id="myInput" type="text" placeholder="Search..">
       </div>
+      <div class="col-1"></div>
     </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <p>Type a zipcode and search:</p>
+      </div>
+      <div class="col-1"></div>
+    </div>
+
+    <form class="form-group row" autocomplete="off">
+      <div class="col-1"></div>
+      <div class="col-8">
+        <input class="form-control" id="zipInput" type="search" placeholder="Type here..." aria-label="Search" pattern=".{5}" title="Five digits" maxlength="5">
+      </div>
+      <button class="col-2 btn btn-outline-info" id="zipBtn" type="submit">Search</button>
+      <div class="col-1"></div>
+    </form>
+
     <div class="row">
       <p>
       </p>
     </div>
 
     <div class="row">
+      <div class="col-1"></div>
       <div class="col-5">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="">
           <div class="card-body">
             <h5 class="card-title">House Value</h5>
-            <p class="card-text">change to the value later.</p>
+            <p class="card-text" id="cardValue-house"> {{houseValue}}</p>
           </div>
         </div>
       </div>
       <div class="col-5">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="">
           <div class="card-body">
             <h5 class="card-title">Income</h5>
-            <p class="card-text">change to the value later.</p>
+            <p class="card-text" id="cardValue-income">{{incomeValue}}</p>
           </div>
         </div>
       </div>
+      <div class="col-1"></div>
     </div>
+
     <div class="row">
+      <br>
+    </div>
+
+    <div class="row">
+      <div class="col-1"></div>
       <div class="col-5">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="">
           <div class="card-body">
-            <h5 class="card-title">Race</h5>
-            <p class="card-text">change to the value later.</p>
+            <h5 class="card-title">Population</h5>
+            <p class="card-text" id="cardValue-pop">{{populationValue}}</p>
           </div>
         </div>
       </div>
       <div class="col-5">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="">
           <div class="card-body">
             <h5 class="card-title">Education</h5>
-            <p class="card-text">change to the value later.</p>
+            <p class="card-text" id="cardValue-edu">{{educationValue}}</p>
           </div>
         </div>
       </div>
+      <div class="col-1"></div>
     </div>
+
   </div>
 
 </section>
 
+
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="../static/js/search.js"></script>
 {% endblock %}

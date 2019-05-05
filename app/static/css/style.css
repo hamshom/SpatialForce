@@ -13,15 +13,13 @@ h1 {
   font-family: 'Montserrat', serif;
 }
 
-form {
-  /* Just to center the form on the page */
+/* form {
   margin: 0 auto;
   width: 400px;
-  /* To see the limits of the form */
   padding: 1em;
   border: 1px solid #CCC;
   border-radius: 1em;
-}
+} */
 
 div+div {
   margin-top: 1em;
@@ -80,4 +78,12 @@ section {
 
 .rank-btn{
   padding: 10rem 0;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }

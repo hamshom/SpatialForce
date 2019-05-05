@@ -3,7 +3,7 @@ from flask import Flask, render_template, json, request, Response, jsonify, flas
 import queries as query
 from flask_mysqldb import MySQL
 import database as db
-
+from random import randint
 
 app = Flask(__name__)
 
@@ -23,13 +23,44 @@ def index():
     # return app.send_static_file("index.html")
     return render_template('index.html')
 
-@app.route('/update',methods=['GET'])
+@app.route('/rank',methods=['GET'])
 def update_form():
-    return render_template('update.html')
+    return render_template('rank.html')
 
-@app.route('/search',methods=['GET'])
+@app.route('/search', methods=['GET'])
+def search_default():
+    houseValue = ""
+    incomeValue = ""
+    populationValue = ""
+    educationValue = ""
+    return render_template('search.html', houseValue=houseValue, incomeValue=incomeValue, populationValue=populationValue, educationValue=educationValue)
+
+@app.route('/search', methods=['POST'])
 def search():
-    return render_template('search.html')
+    zipCode = request.form['zipCode']
+    if(zipCode == ""):
+        return jsonify({'error' : 'Missing data!'})
+
+    if(int(zipCode) == 99999):
+        data = {
+            "houseValue": 1,
+            "incomeValue": 2,
+            "populationValue": 3,
+            "educationValue":4
+        }
+    else:
+        data = {
+            "houseValue": randint(1, 20),
+            "incomeValue": randint(1, 20),
+            "populationValue": randint(1, 20),
+            "educationValue":randint(1, 20)
+        }
+
+    if zipCode.isdigit():
+        return jsonify(data)
+
+    return jsonify({'error' : 'Missing data!'})
+
 
 @app.route('/about')
 def about():
