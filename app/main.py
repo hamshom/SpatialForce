@@ -37,7 +37,12 @@ def search_default():
 
 @app.route('/search', methods=['POST'])
 def search():
-    zipCode = request.form['zipCode']
+    zipCode = '33'
+
+    queryResult = query.get_users(zipCode)
+
+    print(queryResult)
+
     if(zipCode == ""):
         return jsonify({'error' : 'Missing data!'})
 
@@ -50,10 +55,10 @@ def search():
         }
     else:
         data = {
-            "houseValue": randint(1, 20),
-            "incomeValue": randint(1, 20),
-            "populationValue": randint(1, 20),
-            "educationValue":randint(1, 20)
+            "houseValue": queryResult[0][0],
+            "incomeValue": queryResult[0][1],
+            "populationValue": queryResult[0][2],
+            "educationValue": queryResult[0][3]
         }
 
     if zipCode.isdigit():
