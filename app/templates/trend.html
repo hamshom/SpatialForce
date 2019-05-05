@@ -18,18 +18,18 @@
         </tr>
       </thead>
       <tbody id="trendTable">
-        <!-- <tr>
-          <td>94704</td>
-          <td>233</td>
+        <tr>
+          <td>{{data[0].zipcode}}</td>
+          <td>{{data[0].count}}</td>
         </tr>
         <tr>
-          <td>947124</td>
-          <td>123</td>
+          <td>{{data[1].zipcode}}</td>
+          <td>{{data[1].count}}</td>
         </tr>
         <tr>
-          <td>92122</td>
-          <td>22</td>
-        </tr> -->
+          <td>{{data[2].zipcode}}</td>
+          <td>{{data[2].count}}</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -39,5 +39,4 @@
 
 {% block script %}
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="../static/js/trend.js"></script>
 {% endblock %}

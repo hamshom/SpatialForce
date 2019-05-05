@@ -66,14 +66,18 @@ def search():
 
     return jsonify({'error' : 'Missing data!'})
 
+# @app.route('/trend',methods=['GET'])
+# def trend_default():
+#     return render_template('trend.html')
+
+@app.route('/trend', methods=['GET'])
+def trend():
+    trendTableData = query.trend_query()
+    return render_template('trend.html', data=trendTableData)
 
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-@app.route('/contact',methods=['GET'])
-def contact():
-    return render_template('contact.html')
 
 @app.route("/users")
 def users():
