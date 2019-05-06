@@ -6,33 +6,43 @@
 {% endblock %}
 
 {% block content %}
-<section class="bg-light" id="search" style="margin-top:60px">
+<section class="" id="search" style="margin-top:60px">
   <div class="container">
-    <h2>Search Keyword Trend</h2>
-    <p>The popular keyword list:</p>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>Zipcode</th>
-          <th>Count</th>
-        </tr>
-      </thead>
-      <tbody id="trendTable">
-        <tr>
-          <td>{{data[0][0]}}</td>
-          <td>{{data[0][1]}}</td>
-        </tr>
-        <tr>
-          <td>{{data[1][0]}}</td>
-          <td>{{data[1][1]}}</td>
-        </tr>
-        <tr>
-          <td>{{data[2][0]}}</td>
-          <td>{{data[2][1]}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="row">
+      <p> </p>
+    </div>
+
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <h2 class="text-uppercase">Search Keyword Trend</h2>
+        <hr class="star-light mb-5">
+        <p>The popular keyword list:</p>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>Zipcode</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody id="trendTable">
+            <tr>
+              <td>{{data[0][0]}}</td>
+              <td>{{data[0][1]}}</td>
+            </tr>
+            <tr>
+              <td>{{data[1][0]}}</td>
+              <td>{{data[1][1]}}</td>
+            </tr>
+            <tr>
+              <td>{{data[2][0]}}</td>
+              <td>{{data[2][1]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-1"></div>
+    </div>
 </section>
 
 {% endblock %}

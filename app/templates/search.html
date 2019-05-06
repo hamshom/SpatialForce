@@ -5,16 +5,21 @@
 <section class="" id="search" style="margin-top:60px">
   <div class="container">
     <div class="row">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <h2>Search</h2>
-      </div>
-      <div class="col-1"></div>
+      <p> </p>
     </div>
+
     <div class="row">
       <div class="col-1"></div>
       <div class="col-10">
-        <p>Type a zipcode and search:</p>
+        <h2 class="text-uppercase">Search</h2>
+        <hr class="star-light mb-5">
+      </div>
+      <div class="col-1"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
       </div>
       <div class="col-1"></div>
     </div>
@@ -22,40 +27,42 @@
     <form class="form-group row" autocomplete="off">
       <div class="col-1"></div>
       <div class="col-8">
-        <input class="form-control" id="zipInput" type="search" placeholder="Type here..." aria-label="Search" pattern=".{5}" title="Five digits" maxlength="5">
+        <input class="form-control" id="zipInput" type="search" placeholder="Type zipcode here..." aria-label="Search" pattern=".{5}" title="Five digits" maxlength="5">
       </div>
       <button class="col-2 btn btn-outline-info" id="zipBtn" type="submit">Search</button>
       <div class="col-1"></div>
     </form>
 
     <div class="row">
-      <p>
-      </p>
+      <p> </p>
     </div>
 
     <div class="row">
       <div class="col-1"></div>
-      <div class="col-5">
-        <div class="card" style="">
-          <div class="card-body">
-            <h5 class="card-title">House Value</h5>
-            <p class="card-text" id="cardValue-house"> {{houseValue}}</p>
+      <div class="col-10">
+        <div class="card-deck">
+          <div class="card" style="">
+            <div class="card-body">
+              <h5 class="card-title">House Value</h5>
+              <br><br>
+              <h2 class="card-text text-right text-info" id="cardValue-house"> {{houseValue}}</h2>
+            </div>
+          </div>
+          <div class="card" style="">
+            <div class="card-body">
+              <h5 class="card-title">Income</h5>
+              <br><br>
+              <h2 class="card-text text-right text-info" id="cardValue-income">{{incomeValue}}</h2>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-5">
-        <div class="card" style="">
-          <div class="card-body">
-            <h5 class="card-title">Income</h5>
-            <p class="card-text" id="cardValue-income">{{incomeValue}}</p>
-          </div>
-        </div>
-      </div>
+
       <div class="col-1"></div>
     </div>
 
     <div class="row">
-      <br>
+      <p> </p>
     </div>
 
     <div class="row">
@@ -64,7 +71,8 @@
         <div class="card" style="">
           <div class="card-body">
             <h5 class="card-title">Population</h5>
-            <p class="card-text" id="cardValue-pop">{{populationValue}}</p>
+            <br><br>
+            <h2 class="card-text text-right text-info" id="cardValue-pop">{{populationValue}}</h2>
           </div>
         </div>
       </div>
@@ -72,7 +80,8 @@
         <div class="card" style="">
           <div class="card-body">
             <h5 class="card-title">Education</h5>
-            <p class="card-text" id="cardValue-edu">{{educationValue}}</p>
+            <br><br>
+            <h2 class="card-text text-right text-info" id="cardValue-edu">{{educationValue}}</h2>
           </div>
         </div>
       </div>
@@ -80,7 +89,6 @@
     </div>
 
   </div>
-
 </section>
 
 

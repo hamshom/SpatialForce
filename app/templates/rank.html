@@ -4,60 +4,69 @@
 {% block content %}
 <section class="" id="search" style="margin-top:60px">
   <div class="container">
-    <h2>Rank by different categories</h2>
-    <div class="container">
-      <div class="row">
-        <div class="col-2 col-sm">
-          <p>Categories:</p>
-          <div class="row">
-            <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-pop">Population</button>
-          </div>
-          <div class="row">
-            <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-edu">Education</button>
-          </div>
-          <div class="row">
-            <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-income">Income</button>
-          </div>
-          <div class="row">
-            <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-house">House Value</button>
-          </div>
-        </div>
-        <div class="col-1 col-sm"></div>
-        <div class="col-4 col-sm">
+    <div class="row">
+      <p> </p>
+    </div>
+
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <h2 class="text-uppercase">Rank by different categories</h2>
+        <hr class="star-light mb-5">
+      </div>
+      <div class="col-1"></div>
+    </div>
+
+    <div class="row">
+      <p> </p>
+    </div>
+
+    <div class="row">
+      <div class="col-1"></div>
+
+      <div class="col-2">
+        <p>Categories:</p>
+        <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-pop">Population</button>
+        <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-edu">Education</button>
+        <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-income">Income</button>
+        <button type="button" class="btn btn-outline-info btn-block btn-sm" id="rank-btn-house">House Value</button>
+      </div>
+
+      <div class="col-8">
+        <div class="card-deck">
           <div class="card" style="width: 18rem;">
-            <div class="card-header" id="list_top">
+            <div class="card-header bg-light text-dark" id="list_top">
               Top 5:
             </div>
-            <ul class="list-group list-group-flush" id="list_item_div">
-              <li class="list-group-item" id="list_item00">{{data['top'][0]}}</li>
-              <li class="list-group-item" id="list_item01">{{data['top'][1]}}</li>
-              <li class="list-group-item" id="list_item02">{{data['top'][2]}}</li>
-              <li class="list-group-item" id="list_item03">{{data['top'][3]}}</li>
-              <li class="list-group-item" id="list_item04">{{data['top'][4]}}</li>
+            <ul class="list-group" id="list_item_div">
+              <li class="list-group-item text-center" id="list_item00">{{data['top'][0]}}</li>
+              <li class="list-group-item text-center" id="list_item01">{{data['top'][1]}}</li>
+              <li class="list-group-item text-center" id="list_item02">{{data['top'][2]}}</li>
+              <li class="list-group-item text-center" id="list_item03">{{data['top'][3]}}</li>
+              <li class="list-group-item text-center" id="list_item04">{{data['top'][4]}}</li>
             </ul>
           </div>
-        </div>
 
-        <div class="col-1 col-sm"></div>
-
-        <div class="col-4 col-sm">
           <div class="card" style="width: 18rem;">
-            <div class="card-header" id="list_bottom">
+            <div class="card-header bg-light text-dark" id="list_bottom">
               Bottom 5:
             </div>
-            <ul class="list-group list-group-flush" id="list_item_div">
-              <li class="list-group-item" id="list_item10">{{data['bottom'][0]}}</li>
-              <li class="list-group-item" id="list_item11">{{data['bottom'][1]}}</li>
-              <li class="list-group-item" id="list_item12">{{data['bottom'][2]}}</li>
-              <li class="list-group-item" id="list_item13">{{data['bottom'][3]}}</li>
-              <li class="list-group-item" id="list_item14">{{data['bottom'][4]}}</li>
+            <ul class="list-group" id="list_item_div">
+              <li class="list-group-item text-center" id="list_item10">{{data['bottom'][0]}}</li>
+              <li class="list-group-item text-center" id="list_item11">{{data['bottom'][1]}}</li>
+              <li class="list-group-item text-center" id="list_item12">{{data['bottom'][2]}}</li>
+              <li class="list-group-item text-center" id="list_item13">{{data['bottom'][3]}}</li>
+              <li class="list-group-item text-center" id="list_item14">{{data['bottom'][4]}}</li>
             </ul>
           </div>
-
         </div>
       </div>
+
+      <div class="col-1"></div>
+
     </div>
   </div>
+
 </section>
 
 {% endblock %}
