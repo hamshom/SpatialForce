@@ -35,10 +35,49 @@ def search_default():
     educationValue = ""
     return render_template('search.html', houseValue=houseValue, incomeValue=incomeValue, populationValue=populationValue, educationValue=educationValue)
 
+
+def post_json_endpoint(zipcode):
+
+    try:
+
+        # arguments = request.get_json()
+        # zipcode = arguments.get("zipcode")
+
+        conn = db.connect()
+        cursor = conn.cursor(buffered=True)
+        cursor.execute('''SELECT MAX(id) FROM spatialforce.zipcodeLog''')
+        maxid = cursor.fetchone()
+        cursor.execute('''INSERT INTO spatialforce.zipcodeLog (id, Zipcode) VALUES (%s, %s)''', (maxid[0] + 1, zipcode))
+
+        conn.commit()
+        cursor.close()
+
+        # data = {
+        #     "result": zipcode,
+        #     "request-content-type": "application/json"
+        # }
+        # resp = Response(json.dumps(data), mimetype='application/json')
+
+        print('------success')
+        return 'success'
+
+    except Exception as e:
+        print(e)
+    print('------fail')
+
+    return 'fail'
+
+
+
 @app.route('/search', methods=['POST'])
 def search():
-    zipCode = '33'
+    zipCode = str(request.form['zipCode'])
 
+    print('Zipcode ------------', zipCode)
+    # Updates zipcode logger
+    post_json_endpoint(zipCode)
+
+    zipCode = '33'
     queryResult = query.get_users(zipCode)
 
     print(queryResult)
@@ -72,7 +111,10 @@ def search():
 
 @app.route('/trend', methods=['GET'])
 def trend():
-    trendTableData = query.trend_query()
+    trendTableData = query.zipcode_log()
+    print(trendTableData)
+    print('11---------', trendTableData[0])
+    print('2222222222222---', trendTableData[1][0])
     return render_template('trend.html', data=trendTableData)
 
 @app.route('/about')
@@ -89,36 +131,6 @@ def zipcodeLog():
     return jsonify(query.zipcode_log())
 
 
-@app.route("/api/zipcode/<string:zipcode>", methods=['POST'])
-def post_json_endpoint(zipcode):
-
-    try:
-        if request.method == "POST":
-            if request.headers['Content-Type'] == 'application/json':
-                # arguments = request.get_json()
-                # zipcode = arguments.get("zipcode")
-
-                conn = db.connect()
-                cursor = conn.cursor(buffered=True)
-                cursor.execute('''SELECT MAX(id) FROM spatialforce.zipcodeLog''')
-                maxid = cursor.fetchone()
-                cursor.execute('''INSERT INTO spatialforce.zipcodeLog (id, Zipcode) VALUES (%s, %s)''', (maxid[0] + 1, zipcode))
-
-                conn.commit()
-                cursor.close()
-
-                data = {
-                    "result": zipcode,
-                    "request-content-type": "application/json"
-                }
-                resp = Response(json.dumps(data), mimetype='application/json')
-
-                return resp
-
-    except Exception as e:
-        print(e)
-
-    return 'fail'
 
 
 
