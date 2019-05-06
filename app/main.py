@@ -59,6 +59,9 @@ def search():
 
     zipCode = str(request.form['zipCode'])
     housingpriceResult = query.get_avg_housingprice_by_zip(zipCode)
+    totalPopulation    = query.get_race_data_byzip(zipCode)
+
+    print('total pop - ----', totalPopulation)
 
     # Updates zipcode logger
     post_json_endpoint(zipCode)
@@ -80,7 +83,7 @@ def search():
         data = {
             "houseValue": int(housingpriceResult[0][0]),
             "incomeValue": queryResult[0][1],
-            "populationValue": queryResult[0][2],
+            "populationValue": int(totalPopulation[0][0]),
             "educationValue": queryResult[0][3]
         }
 
