@@ -24,11 +24,36 @@
         </div>
         <div class="col-1 col-sm"></div>
         <div class="col-4 col-sm">
-          <div id="list_top"></div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-header" id="list_top">
+              Top 5:
+            </div>
+            <ul class="list-group list-group-flush" id="list_item_div">
+              <li class="list-group-item" id="list_item00">{{data['top'][0]}}</li>
+              <li class="list-group-item" id="list_item01">{{data['top'][1]}}</li>
+              <li class="list-group-item" id="list_item02">{{data['top'][2]}}</li>
+              <li class="list-group-item" id="list_item03">{{data['top'][3]}}</li>
+              <li class="list-group-item" id="list_item04">{{data['top'][4]}}</li>
+            </ul>
+          </div>
         </div>
+
         <div class="col-1 col-sm"></div>
+
         <div class="col-4 col-sm">
-          <div id="list_bottom"></div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-header" id="list_bottom">
+              Bottom 5:
+            </div>
+            <ul class="list-group list-group-flush" id="list_item_div">
+              <li class="list-group-item" id="list_item10">{{data['bottom'][0]}}</li>
+              <li class="list-group-item" id="list_item11">{{data['bottom'][1]}}</li>
+              <li class="list-group-item" id="list_item12">{{data['bottom'][2]}}</li>
+              <li class="list-group-item" id="list_item13">{{data['bottom'][3]}}</li>
+              <li class="list-group-item" id="list_item14">{{data['bottom'][4]}}</li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </div>
@@ -38,6 +63,6 @@
 {% endblock %}
 
 {% block script %}
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="../static/js/rank.js"></script>
 {% endblock %}

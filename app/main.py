@@ -23,10 +23,6 @@ def index():
     # return app.send_static_file("index.html")
     return render_template('index.html')
 
-@app.route('/rank',methods=['GET'])
-def update_form():
-    return render_template('rank.html')
-
 @app.route('/search', methods=['GET'])
 def search_default():
     houseValue = ""
@@ -38,6 +34,7 @@ def search_default():
 @app.route('/search', methods=['POST'])
 def search():
     zipCode = '33'
+    # zipCode = request.form['zipCode']
 
     queryResult = query.get_users(zipCode)
 
@@ -66,9 +63,30 @@ def search():
 
     return jsonify({'error' : 'Missing data!'})
 
-# @app.route('/trend',methods=['GET'])
-# def trend_default():
-#     return render_template('trend.html')
+@app.route('/rank', methods=['GET'])
+def rank_default():
+    data = {
+        "top": [],
+        "bottom": []
+      }
+    return render_template('rank.html', data=data)
+
+@app.route('/rank', methods=['POST'])
+def rank():
+    # return render_template('rank.html')
+    click_type = request.form['type']
+    print(click_type)
+    data = query.rank_query(click_type)
+    # data = {
+    #     "top": [90123, 90124, 90125, 90126, 90127],
+    #     "bottom": [99123, 99124, 99125, 99126, 99127]
+    #   }
+
+    queryValid = 1
+    if queryValid:
+        return jsonify(data)
+
+    return jsonify({'error' : 'Missing data!'})
 
 @app.route('/trend', methods=['GET'])
 def trend():

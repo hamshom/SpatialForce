@@ -1,4 +1,5 @@
 Flask==0.12
+Flask-MySQLdb==0.2.0
 Jinja2==2.10.1
 mysql-connector==2.2.9
 sshtunnel==0.1.4
