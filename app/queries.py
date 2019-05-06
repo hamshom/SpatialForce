@@ -1,6 +1,16 @@
 import database as db
 from random import randint
 
+def get_avg_housingprice_by_zip(zipcode):
+    query = "select AVG(housing_value_2017.mean_housing_value) from spatialforce.housing_value_2017 inner join spatialforce.zipcode_to_geoid on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id and zipcode_to_geoid.zip_code = %s" % (zipcode)
+    conn = db.connect()
+    cursor = conn.cursor(buffered = True)
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return results
+
+
+
 def get_users(county):
     query = "SELECT Geo.county, Geo.tract, Geo.state, Geo.ID FROM spatialforce.Geo WHERE Geo.county = %s LIMIT 2" % (county)
     conn = db.connect()
