@@ -1,7 +1,7 @@
 import database as db
 
-def get_users():
-    query = "SELECT * FROM spatialforce.Geo"
+def get_users(county):
+    query = "SELECT Geo.county, Geo.tract, Geo.state, Geo.ID FROM spatialforce.Geo WHERE Geo.county = %s LIMIT 2" % (county)
     conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(query)
