@@ -1,4 +1,5 @@
 import database as db
+from random import randint
 
 def get_users(county):
     query = "SELECT Geo.county, Geo.tract, Geo.state, Geo.ID FROM spatialforce.Geo WHERE Geo.county = %s LIMIT 2" % (county)
@@ -87,4 +88,24 @@ def trend_query():
         "zipcode": "92979",
         "count": 777
       }]
+    return data
+
+# DUMMIE FUNCTION for trend querying
+# using the TYPE for querying and returns result
+def rank_query(qtype):
+    if(qtype=="pop"):
+        data = {
+            "top": [90003, 90004, 90005, 90006, 90007],
+            "bottom": [99123, 99124, 99125, 99126, 99127]
+        }
+    else:
+        tempArr = []
+        for i in range(5):
+            temp = randint(10000, 99999)
+            tempArr.append(temp)
+        data = {}
+        data['top'] = tempArr
+        data['bottom'] = tempArr
+
+    print(data)
     return data
