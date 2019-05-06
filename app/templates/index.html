@@ -1,20 +1,164 @@
 {% extends "base.html" %}
 {% block title %}{% endblock %}
 
-{% block content %}
-<!-- Header -->
-<!-- Welcome page -->
-<section id="home" style="margin-top:60px">
-  <header class="masthead bg-transparent text-white text-center">
-    <div class="container">
-      <img href="search" src="../static/img/california.png" height="450"></img>
-      <br>
-      <h2 class="text-uppercase mb-0 text-info font-weight-bold">Spatial Force</h2>
-      <!-- <hr class="star-light"> -->
-      <h4 class="font-weight-light mb-0 text-info">Help you to discover the geographical data in California.</h4>
-      <br>
-    </div>
-  </header>
-</section>
+{% block head %}
+<script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="http://use.typekit.com/brf5jpj.js"></script>
+<script src="//use.typekit.net/drk2sev.js"></script>
+<script type="text/javascript">
+  try {
+    Typekit.load();
+  } catch (e) {}
+</script>
+<style type="text/css">
+  body {
+    margin: 0;
+  }
 
+  #container {
+    width: 800px;
+    margin-left: 30px;
+    margin-right: auto;
+    margin-top: 30px;
+    padding: 30px;
+    background-color: white;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  p {
+    font-size: 16px;
+    margin: 15px 0 10px 0;
+  }
+
+  svg {
+    background-color: white;
+    padding-left: 20px;
+  }
+
+  path {
+    fill: #17a2b8;
+    stroke: #fff;
+  }
+
+  path:hover {
+    fill: #48494b;
+    cursor: pointer;
+  }
+
+  #tooltip {
+    width: 150px;
+    height: auto;
+    padding: 5px;
+    background-color: #fff;
+    color: #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    position: absolute;
+  }
+
+  #tooltip.hidden {
+    display: none;
+  }
+
+  #tooltip p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <p> </p>
+  </div>
+
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10" id="container"></div>
+    <div class="col-1"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <h2 class="text-uppercase mb-0 text-info font-weight-bold text-center">Spatial Force</h2>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <h4 class="font-weight-light mb-0 text-info text-center">Help you to discover the geographical data in California.</h4>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+
+<div id="tooltip" class="hidden">
+  <p>County: <span id="county">County Name</span></p>
+</div>
+
+<script type="text/javascript">
+  //Width and height
+  var w = 760;
+  var h = 600;
+
+  //Define map projection
+  var projection = d3.geo.mercator()
+    .center([-120, 37])
+    .translate([w / 2, h / 2])
+    .scale([w * 3.3]);
+
+  //Define path generator
+  var path = d3.geo.path()
+    .projection(projection);
+
+  //Create SVG
+  var svg = d3.select("#container")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h)
+    .attr('class', 'text-center');
+
+  //Load in GeoJSON data
+  d3.json("../static/json/cb_2014_us_county_5m.json", function(json) {
+    console.log(json);
+    //Bind data and create one path per GeoJSON feature
+    svg.selectAll("path")
+      .data(json.features)
+      .enter()
+      .append("path")
+      .attr("d", path)
+      .on("mouseover", function(d) {
+        var xPosition = w / 2 + 500;
+        var yPosition = h / 2 - 100;
+        d3.select("#tooltip")
+          .style("left", xPosition + "px")
+          .style("top", yPosition + "px");
+        d3.select("#county")
+          .text(d.properties.NAME);
+        d3.select("#tooltip")
+          .classed("hidden", false);
+      })
+      .on("mouseout", function() {
+        d3.select("#tooltip").classed("hidden", true);
+      });
+  });
+</script>
+<!-- Credit to http://bl.ocks.org/threestory/ed0f322d7bb2e3be8ded -->
+
+{% endblock %}
+
+{% block script %}
 {% endblock %}
