@@ -72,3 +72,19 @@ def zipcode_log():
     cursor.execute(query)
     results = cursor.fetchall()
     return results
+
+# DUMMIE FUNCTION for trend querying
+def trend_query():
+    data = [{
+        "zipcode": "94704",
+        "count": 9999
+      },
+      {
+        "zipcode": "94889",
+        "count": 888
+      },
+      {
+        "zipcode": "92979",
+        "count": 777
+      }]
+    return data
