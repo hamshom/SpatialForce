@@ -36,9 +36,6 @@ def post_json_endpoint(zipcode):
 
     try:
 
-        # arguments = request.get_json()
-        # zipcode = arguments.get("zipcode")
-
         conn = db.connect()
         cursor = conn.cursor(buffered=True)
         cursor.execute('''SELECT MAX(id) FROM spatialforce.zipcodeLog''')
@@ -48,18 +45,10 @@ def post_json_endpoint(zipcode):
         conn.commit()
         cursor.close()
 
-        # data = {
-        #     "result": zipcode,
-        #     "request-content-type": "application/json"
-        # }
-        # resp = Response(json.dumps(data), mimetype='application/json')
-
-        print('------success')
         return 'success'
 
     except Exception as e:
         print(e)
-    print('------fail')
 
     return 'fail'
 
@@ -132,9 +121,6 @@ def rank():
 @app.route('/trend', methods=['GET'])
 def trend():
     trendTableData = query.zipcode_log()
-    print(trendTableData)
-    print('11---------', trendTableData[0])
-    print('2222222222222---', trendTableData[1][0])
     return render_template('trend.html', data=trendTableData)
 
 @app.route('/about')
