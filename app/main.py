@@ -58,10 +58,7 @@ def post_json_endpoint(zipcode):
 def search():
 
     zipCode = str(request.form['zipCode'])
-    zipCode = '33'
-    # zipCode = request.form['zipCode']
 
-    print('Zipcode ------------', zipCode)
     # Updates zipcode logger
     post_json_endpoint(zipCode)
 
