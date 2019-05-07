@@ -85,7 +85,7 @@ def get_top_10_zip_by_income():
     return result
 
 def zipcode_log():
-    query = "SELECT Zipcode, COUNT(*) AS Log FROM spatialforce.zipcodeLog GROUP BY Zipcode ORDER BY Log Desc"
+    query = "SELECT Zipcode, COUNT(*) AS Log FROM spatialforce.zipcode_log GROUP BY Zipcode ORDER BY Log Desc"
     conn = db.connect()
     cursor = conn.cursor(buffered=True)
     cursor.execute(query)
