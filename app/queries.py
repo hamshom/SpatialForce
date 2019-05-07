@@ -76,6 +76,14 @@ def get_top_10_zip_most_expensive_house():
     result = cursor.fetchall()
     return result
 
+def get_top_10_zip_by_income():
+    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.income_2013_2016 on income_2013_2016.state_id = zipcode_to_geoid.state_id and income_2013_2016.county_id = zipcode_to_geoid.county_id and income_2013_2016.tract_id = zipcode_to_geoid.tract_id order by income_2013_2016.income desc limit 10;"
+    conn = db.connect()
+    cursor = conn.cursor(buffered = True)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
+
 def zipcode_log():
     query = "SELECT Zipcode, COUNT(*) AS Log FROM spatialforce.zipcodeLog GROUP BY Zipcode ORDER BY Log Desc"
     conn = db.connect()
