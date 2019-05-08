@@ -38,9 +38,9 @@ def post_json_endpoint(zipcode):
 
         conn = db.connect()
         cursor = conn.cursor(buffered=True)
-        cursor.execute('''SELECT MAX(id) FROM spatialforce.zipcode_log''')
+        cursor.execute('''SELECT MAX(pid) FROM spatialforce.zipcode_log''')
         maxid = cursor.fetchone()
-        cursor.execute('''INSERT INTO spatialforce.zipcode_log (id, Zipcode) VALUES (%s, %s)''', (maxid[0] + 1, zipcode))
+        cursor.execute('''INSERT INTO spatialforce.zipcode_log (pid, zip_code) VALUES (%s, %s)''', (maxid[0] + 1, zipcode))
 
         conn.commit()
         cursor.close()
@@ -142,13 +142,6 @@ def users():
 @app.route("/api/zipcode_log")
 def zipcodeLog():
     return jsonify(query.zipcode_log())
-
-
-
-
-
-
-
 
 
 
