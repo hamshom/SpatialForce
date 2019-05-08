@@ -35,7 +35,6 @@ def search_default():
 def post_json_endpoint(zipcode):
 
     try:
-
         conn = db.connect()
         cursor = conn.cursor(buffered=True)
         cursor.execute('''SELECT MAX(id) FROM spatialforce.zipcode_log''')
@@ -44,7 +43,7 @@ def post_json_endpoint(zipcode):
 
         conn.commit()
         cursor.close()
-
+        print("add zipcode to trend table successfully with code:" + zipcode)
         return 'success'
 
     except Exception as e:
@@ -59,16 +58,18 @@ def search():
 
     zipCode = str(request.form['zipCode'])
 
+    if(zipCode == ""):
+        return jsonify({'error' : 'Missing data!'})
+
+    # Updates zipcode logger
+    post_json_endpoint(zipCode)
+
     housingpriceResult = query.get_avg_housingprice_by_zip(zipCode)
     totalPopulation    = query.get_population_byzip(zipCode)
     totalEduction      = query.get_number_college_grad_byzip(zipCode)
     AverageIncome      = query.get_avg_income_byzip(zipCode)
 
-    # Updates zipcode logger
-    post_json_endpoint(zipCode)
-
     variableList = [totalPopulation, housingpriceResult,totalEduction, AverageIncome ]
-
 
     if any(elem[0][0] is None for elem in variableList):
         # data = {
@@ -81,25 +82,12 @@ def search():
         return jsonify({'error' : 'Missing data!'})
 
     else:
-
-        if(zipCode == ""):
-            return jsonify({'error' : 'Missing data!'})
-
-        if(int(zipCode) == 99999):
-            data = {
-                "houseValue": 1,
-                "incomeValue": 2,
-                "populationValue": 3,
-                "educationValue":4
-            }
-        else:
-            data = {
-                "houseValue": int(housingpriceResult[0][0]),
-                "incomeValue": int(AverageIncome[0][0]),
-                "populationValue": int(totalPopulation[0][0]),
-                "educationValue": int(totalEduction[0][0])
-            }
-
+        data = {
+            "houseValue": int(housingpriceResult[0][0]),
+            "incomeValue": int(AverageIncome[0][0]),
+            "populationValue": int(totalPopulation[0][0]),
+            "educationValue": int(totalEduction[0][0])
+        }
         return jsonify(data)
 
 
