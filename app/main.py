@@ -69,6 +69,16 @@ def search():
     totalEduction      = query.get_number_college_grad_byzip(zipCode)
     AverageIncome      = query.get_avg_income_byzip(zipCode)
 
+    # DEBUGGG
+    if housingpriceResult[0][0]:
+        print("house value: " + str(int(housingpriceResult[0][0])))
+    if totalPopulation[0][0]:
+        print("population: " + str(int(totalPopulation[0][0])))
+    if totalEduction[0][0]:
+        print("education: " + str(int(totalEduction[0][0])))
+    if AverageIncome[0][0]:
+        print("income: " + str(int(AverageIncome[0][0])))
+
     variableList = [totalPopulation, housingpriceResult,totalEduction, AverageIncome ]
 
     if any(elem[0][0] is None for elem in variableList):
