@@ -67,28 +67,42 @@ def search():
     # Updates zipcode logger
     post_json_endpoint(zipCode)
 
-    if(zipCode == ""):
-        return jsonify({'error' : 'Missing data!'})
+    variableList = [totalPopulation, housingpriceResult,totalEduction, AverageIncome ]
 
-    if(int(zipCode) == 99999):
+
+    if any(elem[0][0] is None for elem in variableList):
+
         data = {
-            "houseValue": 1,
-            "incomeValue": 2,
-            "populationValue": 3,
-            "educationValue":4
-        }
-    else:
-        data = {
-            "houseValue": int(housingpriceResult[0][0]),
-            "incomeValue": int(AverageIncome[0][0]),
-            "populationValue": int(totalPopulation[0][0]),
-            "educationValue": int(totalEduction[0][0])
+            "houseValue": "N/A",
+            "incomeValue": "N/A",
+            "populationValue": "N/A",
+            "educationValue": "N/A"
         }
 
-    if zipCode.isdigit():
         return jsonify(data)
 
-    return jsonify({'error' : 'Missing data!'})
+    else:
+
+        if(zipCode == ""):
+            return jsonify({'error' : 'Missing data!'})
+
+        if(int(zipCode) == 99999):
+            data = {
+                "houseValue": 1,
+                "incomeValue": 2,
+                "populationValue": 3,
+                "educationValue":4
+            }
+        else:
+            data = {
+                "houseValue": int(housingpriceResult[0][0]),
+                "incomeValue": int(AverageIncome[0][0]),
+                "populationValue": int(totalPopulation[0][0]),
+                "educationValue": int(totalEduction[0][0])
+            }
+
+        return jsonify(data)
+
 
 @app.route('/rank', methods=['GET'])
 def rank_default():
