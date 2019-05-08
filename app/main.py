@@ -58,16 +58,16 @@ def post_json_endpoint(zipcode):
 def search():
 
     zipCode = str(request.form['zipCode'])
+
     housingpriceResult = query.get_avg_housingprice_by_zip(zipCode)
     totalPopulation    = query.get_race_data_byzip(zipCode)
+    totalEduction      = query.get_number_college_grad_byzip(zipCode)
+    AverageIncome      = query.get_avg_income_byzip(zipCode)
 
     print('total pop - ----', totalPopulation)
 
     # Updates zipcode logger
     post_json_endpoint(zipCode)
-
-    zipCode = '33'
-    queryResult = query.get_users(zipCode)
 
     if(zipCode == ""):
         return jsonify({'error' : 'Missing data!'})
@@ -82,9 +82,9 @@ def search():
     else:
         data = {
             "houseValue": int(housingpriceResult[0][0]),
-            "incomeValue": queryResult[0][1],
+            "incomeValue": int(AverageIncome[0][0]),
             "populationValue": int(totalPopulation[0][0]),
-            "educationValue": queryResult[0][3]
+            "educationValue": int(totalEduction[0][0])
         }
 
     if zipCode.isdigit():
