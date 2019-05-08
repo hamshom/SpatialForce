@@ -7,9 +7,9 @@ from sshtunnel import SSHTunnelForwarder
 def connect():
 
     ssh_host = 'groups.ischool.berkeley.edu'
-    ssh_user = ## ISCHOOL USERNAME
+    ssh_user = #namee
     ssh_port = 22
-    ssh_p = ##ISCHOOL PASSWORD
+    ssh_p = #password
 
     tunnel = SSHTunnelForwarder(
         (ssh_host, ssh_port),
