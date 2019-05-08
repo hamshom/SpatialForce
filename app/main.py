@@ -77,6 +77,8 @@ def search():
             "populationValue": 3,
             "educationValue":4
         }
+    elif(int(zipCode) == 00000):
+        return jsonify({'error' : 'Missing data!'})
     else:
         data = {
             "houseValue": int(housingpriceResult[0][0]),
