@@ -24,6 +24,7 @@ $(document).ready(function() {
         $('#cardValue-income').hide();
         $('#cardValue-pop').hide();
         $('#cardValue-edu').hide();
+				alert("Try another ZIP Code!");
         console.log(data.error);
 			}
 			else {
