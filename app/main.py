@@ -64,8 +64,6 @@ def search():
     totalEduction      = query.get_number_college_grad_byzip(zipCode)
     AverageIncome      = query.get_avg_income_byzip(zipCode)
 
-    print('total pop - ----', totalPopulation)
-
     # Updates zipcode logger
     post_json_endpoint(zipCode)
 
@@ -106,9 +104,6 @@ def rank():
     click_type = request.form['type']
     print(click_type)
     data = query.rank_query(click_type)
-
-    print('daaaaaaaaaaaaaaattttttttttttaaaaaaaaaaaa')
-    print(data)
 
     queryValid = 1
     if queryValid:
