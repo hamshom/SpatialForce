@@ -106,10 +106,9 @@ def rank():
     click_type = request.form['type']
     print(click_type)
     data = query.rank_query(click_type)
-    # data = {
-    #     "top": [90123, 90124, 90125, 90126, 90127],
-    #     "bottom": [99123, 99124, 99125, 99126, 99127]
-    #   }
+
+    print('daaaaaaaaaaaaaaattttttttttttaaaaaaaaaaaa')
+    print(data)
 
     queryValid = 1
     if queryValid:

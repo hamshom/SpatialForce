@@ -101,8 +101,16 @@ def get_bottom_5_zip_by_mean_housing_val():
     result = cursor.fetchall()
     return result
 
-def get_top_10_zip_most_expensive_house():
-    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.housing_value_2017 on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id order by housing_value_2017.num_most_exp_house desc limit 10"
+def get_top_5_zip_most_expensive_house():
+    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.housing_value_2017 on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id order by housing_value_2017.num_most_exp_house desc limit 5"
+    conn = db.connect()
+    cursor = conn.cursor(buffered = True)
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    return result
+
+def get_bottom_5_zip_most_expensive_house():
+    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.housing_value_2017 on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id order by housing_value_2017.num_most_exp_house ASC limit 5"
     conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
@@ -118,7 +126,7 @@ def get_top_5_zip_by_income():
     return result
 
 def get_bottom_5_zip_by_income():
-    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.income_2013_2016 on  income_2013_2016.tract_pid = zipcode_to_geoid.tract_pid order by income_2013_2016.income limit 5"
+    sql = "SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.income_2013_2016 on  income_2013_2016.tract_pid = zipcode_to_geoid.tract_pid order by income_2013_2016.income ASC limit 5"
     conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
@@ -134,7 +142,7 @@ def get_top_5_zip_by_education():
     return result
 
 def get_bottom_5_zip_by_education():
-    sql ="SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.education_2017 on  education_2017.tract_pid = zipcode_to_geoid.tract_pid order by education_2017.pop_college_grad limit 5"
+    sql ="SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.education_2017 on  education_2017.tract_pid = zipcode_to_geoid.tract_pid order by education_2017.pop_college_grad ASC limit 5"
     conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
@@ -150,7 +158,7 @@ def get_top_5_zip_by_population():
     return result
 
 def get_bottom_5_zip_by_population():
-    sql ="SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.race_2010 on race_2010.tract_pid = zipcode_to_geoid.tract_pid order by race_2010.total_pop limit 5"
+    sql ="SELECT zip_code FROM spatialforce.zipcode_to_geoid inner join spatialforce.race_2010 on race_2010.tract_pid = zipcode_to_geoid.tract_pid order by race_2010.total_pop ASC limit 5"
     conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
@@ -187,17 +195,42 @@ def trend_query():
 # using the TYPE for querying and returns result
 def rank_query(qtype):
     if(qtype == "pop"):
+
+        print('population')
         data = {
-            "top": [90003, 90004, 90005, 90006, 90007],
-            "bottom": [99123, 99124, 99125, 99126, 99127]
+            "top": get_top_5_zip_by_population(),
+            "bottom": get_bottom_5_zip_by_population()
         }
 
     elif(qtype == "house"):
+
+        print('houseeeee')
 
         data = {
             "top": get_top_5_zip_by_mean_housing_val(),
             "bottom": get_bottom_5_zip_by_mean_housing_val()
         }
+
+
+    elif(qtype == "edu"):
+
+        print('education')
+
+        data = {
+            "top": get_top_5_zip_by_education(),
+            "bottom": get_bottom_5_zip_by_education()
+        }
+
+    elif(qtype == "income"):
+
+        print('income')
+
+
+        data = {
+            "top": get_top_5_zip_by_income(),
+            "bottom": get_bottom_5_zip_by_income()
+        }
+
 
 
     else:
@@ -211,3 +244,6 @@ def rank_query(qtype):
 
     print(data)
     return data
+
+
+
