@@ -1,13 +1,23 @@
 import database as db
 from random import randint
 
+# def get_avg_housingprice_by_zip(zipcode):
+#     query = "select AVG(housing_value_2017.mean_housing_value) from spatialforce.housing_value_2017 inner join spatialforce.zipcode_to_geoid on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id and zipcode_to_geoid.zip_code = %s" % (zipcode)
+#     conn = db.connect()
+#     cursor = conn.cursor(buffered = True)
+#     cursor.execute(query)
+#     results = cursor.fetchall()
+#     return results
+
+
 def get_avg_housingprice_by_zip(zipcode):
-    query = "select AVG(housing_value_2017.mean_housing_value) from spatialforce.housing_value_2017 inner join spatialforce.zipcode_to_geoid on housing_value_2017.state_id = zipcode_to_geoid.state_id and housing_value_2017.county_id = zipcode_to_geoid.county_id and housing_value_2017.tract_id = zipcode_to_geoid.tract_id and zipcode_to_geoid.zip_code = %s" % (zipcode)
+    query = "select AVG(housing_value_2017.mean_housing_value) from spatialforce.housing_value_2017 inner join spatialforce.zipcode_to_geoid on housing_value_2017.tract_pid = zipcode_to_geoid.tract_pid and zipcode_to_geoid.zip_code = %s" % (zipcode)
     conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(query)
     results = cursor.fetchall()
     return results
+
 
 
 
@@ -40,7 +50,7 @@ def get_geo(state, county, tract):
 
 def get_population_byzip(zip_code):
     sql = "Select SUM(race_2010.total_pop) from spatialforce.race_2010 inner join spatialforce.zipcode_to_geoid on race_2010.tract_pid = zipcode_to_geoid.tract_pid and zipcode_to_geoid.zip_code = %s" % (zip_code)
-    conn = db.conect()
+    conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
     result = cursor.fetchall()
@@ -49,7 +59,7 @@ def get_population_byzip(zip_code):
 
 def get_avg_income_byzip(zip_code):
     sql = "select AVG(income) from spatialforce.income_2013_2016 inner join spatialforce.zipcode_to_geoid on income_2013_2016.tract_pid = zipcode_to_geoid.tract_pid and zipcode_to_geoid.zip_code = %s" % (zip_code)
-    conn = db.conect()
+    conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
     result = cursor.fetchall()
@@ -57,7 +67,7 @@ def get_avg_income_byzip(zip_code):
 
 def get_number_college_grad_byzip(zip_code):
     sql = "select sum(pop_college_grad) from spatialforce.education_2017 inner join spatialforce.zipcode_to_geoid on education_2017.tract_pid = zipcode_to_geoid.tract_pid and zipcode_to_geoid.zip_code = %s" % (zip_code)
-    conn = db.conect()
+    conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
     result = cursor.fetchall()

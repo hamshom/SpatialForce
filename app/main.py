@@ -60,7 +60,7 @@ def search():
     zipCode = str(request.form['zipCode'])
 
     housingpriceResult = query.get_avg_housingprice_by_zip(zipCode)
-    totalPopulation    = query.get_race_data_byzip(zipCode)
+    totalPopulation    = query.get_population_byzip(zipCode)
     totalEduction      = query.get_number_college_grad_byzip(zipCode)
     AverageIncome      = query.get_avg_income_byzip(zipCode)
 
