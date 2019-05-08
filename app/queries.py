@@ -160,7 +160,7 @@ def get_bottom_5_zip_by_population():
 ################################################
 
 def zipcode_log():
-    query = "SELECT Zipcode, COUNT(*) AS Log FROM spatialforce.zipcode_log GROUP BY Zipcode ORDER BY Log Desc"
+    query = "SELECT zip_code, COUNT(*) AS Log FROM spatialforce.zipcode_log GROUP BY zip_code ORDER BY Log Desc"
     conn = db.connect()
     cursor = conn.cursor(buffered=True)
     cursor.execute(query)
@@ -186,11 +186,20 @@ def trend_query():
 # DUMMIE FUNCTION for trend querying
 # using the TYPE for querying and returns result
 def rank_query(qtype):
-    if(qtype=="pop"):
+    if(qtype == "pop"):
         data = {
             "top": [90003, 90004, 90005, 90006, 90007],
             "bottom": [99123, 99124, 99125, 99126, 99127]
         }
+
+    elif(qtype == "house"):
+
+        data = {
+            "top": get_top_5_zip_by_mean_housing_val(),
+            "bottom": get_bottom_5_zip_by_mean_housing_val()
+        }
+
+
     else:
         tempArr = []
         for i in range(5):
