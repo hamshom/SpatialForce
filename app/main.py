@@ -71,15 +71,14 @@ def search():
 
 
     if any(elem[0][0] is None for elem in variableList):
-
-        data = {
-            "houseValue": "N/A",
-            "incomeValue": "N/A",
-            "populationValue": "N/A",
-            "educationValue": "N/A"
-        }
-
-        return jsonify(data)
+        # data = {
+        #     "houseValue": "N/A",
+        #     "incomeValue": "N/A",
+        #     "populationValue": "N/A",
+        #     "educationValue": "N/A"
+        # }
+        # return jsonify(data)
+        return jsonify({'error' : 'Missing data!'})
 
     else:
 
