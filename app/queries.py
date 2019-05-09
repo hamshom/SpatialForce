@@ -118,7 +118,7 @@ def get_bottom_5_zip_most_expensive_house():
     return result
 
 def get_top_5_zip_by_income():
-    sql = "Select a.zip from (SELECT zip_code as zip, max(income) as target_income FROM spatialforce.zipcode_to_geoid inner join spatialforce.income_2013_2016 on zipcode_to_geoid.tract_pid=income_2013_2016.tract_pid and income_2013_2016.year="2016" group by zip order by target_income desc limit 5) as a"
+    sql = "Select a.zip from (SELECT zip_code as zip, max(income) as target_income FROM spatialforce.zipcode_to_geoid inner join spatialforce.income_2013_2016 on zipcode_to_geoid.tract_pid=income_2013_2016.tract_pid and income_2013_2016.year=2016 group by zip order by target_income desc limit 5) as a"
     conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
@@ -126,7 +126,7 @@ def get_top_5_zip_by_income():
     return result
 
 def get_bottom_5_zip_by_income():
-    sql = "Select a.zip from (SELECT zip_code as zip, max(income) as target_income FROM spatialforce.zipcode_to_geoid inner join spatialforce.income_2013_2016 on zipcode_to_geoid.tract_pid=income_2013_2016.tract_pid and income_2013_2016.year="2016" group by zip order by target_income limit 5) as a"
+    sql = "Select a.zip from (SELECT zip_code as zip, max(income) as target_income FROM spatialforce.zipcode_to_geoid inner join spatialforce.income_2013_2016 on zipcode_to_geoid.tract_pid=income_2013_2016.tract_pid and income_2013_2016.year=2016 group by zip order by target_income limit 5) as a"
     conn = db.connect()
     cursor = conn.cursor(buffered = True)
     cursor.execute(sql)
